@@ -1,47 +1,29 @@
 import { Component, signal } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ContadorComponent } from "./components/contador/contador.component";
+import { MostradorComponent } from "./components/mostrador/mostrador.component";
 
 @Component({
   selector: 'app-root',
+  imports: [FormsModule, ContadorComponent, MostradorComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+  currentTask = signal('')
 
   contador = signal(0)
 
-  imagemContador = signal(1)
 
-  imagemList = signal([
-    'imagem1.png',
-    'imagem2.png',
-    'imagem3.png'
-  ])
 
-  decrementar(){
-    let currentValue = this.contador()
-    this.contador.set(--currentValue)
-  }
-  incrementar(){
-    let currentValue = this.contador()
-    this.contador.set(++currentValue)
-  }
+  taskList = signal<string[]>([])
 
-  proximo(){
-    console.log(this.imagemList.length);
-    
-    if(this.imagemContador() >= this.imagemList.length){
-      return
-    } else{
-      let currentValue = this.imagemContador()
-      this.imagemContador.set(++currentValue)
+  enviar() {
+    const task = this.currentTask()
+    if(task){
+      this.taskList.update(v => [task, ...v])
     }
-  }
-  anterior(){
-    if(this.imagemContador() < 1){
-      return
-    } else{
-      let currentValue = this.imagemContador()
-      this.imagemContador.set(--currentValue)
-    }
+    this.currentTask.set('')
+
   }
 }

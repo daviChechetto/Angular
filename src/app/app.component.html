@@ -1,20 +1,14 @@
-<h1>Contador {{ contador() }}</h1>
+<app-contador></app-contador>
 
-<button (click)="incrementar()">Incrementar</button>
-<button (click)="decrementar()">Decrementar</button>
+<app-mostrador></app-mostrador>
 
-@if( contador() > 10){
-  <p>Esse valor é maior que 10</p>
-} @else if( contador() < 0){
-  <p>Esse valor é maior que 10</p>
-}
 
-<h2>Mostrador de Imagem</h2>
+<h2>To do List</h2>
+<input [(ngModel)]="currentTask" (keyup.enter)="enviar()" type="text">
+<button (click)="enviar()">Anotar</button>
 
-<section class="carrossel">
-  <button (click)="anterior()" id="botaoAnterior" class="botao-carrossel"><</button>
-  
-  <img [src]="imagemList()[imagemContador()]" alt="">
-  
-  <button (click)="proximo()" id="botaoProximo" class="botao-carrossel">></button>
-</section>
+<ul>
+  @for (task of taskList(); track $index) {
+    <li>{{ task }}</li>
+  }
+</ul>

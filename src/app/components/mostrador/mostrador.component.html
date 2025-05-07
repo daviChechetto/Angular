@@ -1,0 +1,9 @@
+<h2>Mostrador de Imagem</h2>
+
+<section class="carrossel">
+  <button (click)="anterior()" id="botaoAnterior" class="botao-carrossel">◀️</button>
+  
+  <img [src]="imagemList()[imagemContador()]" alt="">
+  
+  <button (click)="proximo()" id="botaoProximo" class="botao-carrossel">▶️</button>
+</section>

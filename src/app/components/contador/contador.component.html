@@ -1,0 +1,10 @@
+<h1>Contador {{ contador() }}</h1>
+
+<button (click)="incrementar()">Incrementar</button>
+<button (click)="decrementar()">Decrementar</button>
+
+@if( contador() > 10){
+  <p>Esse valor é maior que 10</p>
+} @else if( contador() < 0){
+  <p>Esse valor é maior que 10</p>
+}
